@@ -1,0 +1,24 @@
+name: "paradicms gui"
+description: "Extract, transform, and load data into paradicms-compatible RDF and generate a static site from it"
+author: "Minor Gordon"
+branding:
+  icon: "loader"
+inputs:
+  base_url_path:
+    description: Next.js basePath (https://nextjs.org/docs/api-reference/next.config.js/basepath)
+    required: false
+  configuration_file_path:
+    description: Path to a configuration.json file, which controls the static site generator.
+    required: false
+  debug:
+    description: Debug the action
+    required: false
+  input_directory_path:
+    description: Path to a directory of a document metadata (.json/.yaml).
+    required: true
+  output_directory_path:
+    description: Path to a directory to write the generated static site.
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
