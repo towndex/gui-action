@@ -1,22 +1,19 @@
-name: "paradicms gui"
-description: "Extract, transform, and load data into paradicms-compatible RDF and generate a static site from it"
+name: "towndex gui"
+description: "Generate a towndex static site from input document metadata"
 author: "Minor Gordon"
 branding:
   icon: "loader"
 inputs:
-  base_url_path:
-    description: Next.js basePath (https://nextjs.org/docs/api-reference/next.config.js/basepath)
-    required: false
-  configuration_file_path:
+  configuration:
     description: Path to a configuration.json file, which controls the static site generator.
     required: false
   debug:
     description: Debug the action
     required: false
-  input_directory_path:
+  input:
     description: Path to a directory of a document metadata (.json/.yaml).
     required: true
-  output_directory_path:
+  output:
     description: Path to a directory to write the generated static site.
     required: true
 runs:
