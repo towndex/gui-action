@@ -21,6 +21,7 @@ class Action:
     class Inputs:
         input: str
         output: str
+        cache: str = ""
         configuration: str = ""
         debug: str = ""
         dev: bool = False
@@ -57,6 +58,7 @@ class Action:
         def __post_init__(self):
             for field in dataclasses.fields(self):
                 if field.name in (
+                    "cache",
                     "configuration",
                     "debug",
                     "dev",
@@ -86,6 +88,7 @@ class Action:
     def __build_gui(
         self,
         *,
+        cache_directory_path: Optional[Path],
         configuration_file_path: Optional[Path],
         gui_directory_path: Path,
         input_directory_path: Path,
@@ -94,6 +97,9 @@ class Action:
         data_file_path = self.__temp_directory_path / "data.json"
 
         cli(
+            cache=cache_directory_path.resolve()
+            if cache_directory_path is not None
+            else None,
             input=str(input_directory_path.resolve()),
             input_format=InputFormat.JSON_DIRECTORY,
             output=data_file_path,
@@ -145,6 +151,9 @@ class Action:
             raise RuntimeError("unable to locate towndex gui directory")
 
         self.__build_gui(
+            cache_directory_path=Path(self.__inputs.cache)
+            if self.__inputs.cache
+            else None,
             configuration_file_path=Path(self.__inputs.configuration)
             if self.__inputs.configuration
             else None,
