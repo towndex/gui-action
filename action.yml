@@ -4,6 +4,9 @@ author: "Minor Gordon"
 branding:
   icon: "loader"
 inputs:
+  cache:
+    description: Path to a directory to use for caching
+    required: false
   configuration:
     description: Path to a configuration.json file, which controls the static site generator.
     required: false
