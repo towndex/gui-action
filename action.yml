@@ -8,16 +8,16 @@ inputs:
     description: Path to a directory to use for caching
     required: false
   configuration:
-    description: Path to a configuration.json file, which controls the static site generator.
+    description: Path to a configuration.json file, which controls the static site generator
     required: false
   debug:
     description: Debug the action
     required: false
   input:
-    description: Path to a directory of a document metadata (.json/.yaml).
+    description: Path to a directory of document metadata files (.json/.yaml)
     required: true
   output:
-    description: Path to a directory to write the generated static site.
+    description: Path to a directory to write the generated static site
     required: true
 runs:
   using: "docker"
