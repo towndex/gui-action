@@ -14,8 +14,11 @@ inputs:
     description: Debug the action
     required: false
   input:
-    description: Path to a directory of document metadata files (.json/.yaml)
+    description: Input to the action, depends on format
     required: true
+  input_format:
+    description: Input format
+    required: false
   output:
     description: Path to a directory to write the generated static site
     required: true

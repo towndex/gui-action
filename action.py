@@ -15,6 +15,7 @@ class Action:
         cache: str = ""
         configuration: str = ""
         debug: str = ""
+        input_format: str = ""
 
         @classmethod
         def from_args(cls):
@@ -36,11 +37,7 @@ class Action:
 
         def __post_init__(self):
             for field in dataclasses.fields(self):
-                if field.name in (
-                    "cache",
-                    "configuration",
-                    "debug",
-                ):
+                if isinstance(field.default, str):
                     continue
                 value = getattr(self, field.name)
                 if not value.strip():
@@ -59,6 +56,8 @@ class Action:
         if inputs.debug:
             cli_args.append("--debug")
         cli_args.extend(("--input", inputs.input))
+        if inputs.input_format:
+            cli_args.extend(("--input-format", inputs.input_format))
         cli_args.extend(("--output", inputs.output))
 
         cli(cli_args)
